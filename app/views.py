@@ -5,5 +5,5 @@ from app import app
 @app.route('/')
 def index():
 
-
-    return render_template('index.html')
+    message = 'One Minute Pitch'
+    return render_template('index.html',message = message)
