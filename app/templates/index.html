@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
   <div class="container">
-<h1> {{ message }} </h1>
+{% if title %}
+<title> {{ title }} </title>
+{% else %}
+<title> Welcome to One Minute Pitch Web </title>
+{% endif %}
 
   </div>
   <div class="jumbotron">
@@ -8,35 +13,27 @@
 
     <h3>{{ PickUp Lines }}</h3>
       <ul>
-        {% for punchLine_category in punchLine %}
-        <li>{{punchline_category.title}}</li>
-        {% endfor %}
+        {{ macro.displayCategoryList(pickupLine)}}
       </ul>
   </div>
   <div class="jumbotron">
     <h3> {{ Interview Pitch }} </h3>
     <ul>
-      {% for interviewPitch_category in interviewPitch %}
-      <li>{{interviewPitch_category.title}}</li>
-      {% endfor %}
+      {{ macro.displayCategoryList(interviewPitch)}}
     </ul>
 
   </div>
   <div class="jumbotron">
     <h3> {{ Product Pitch }} </h3>
     <ul>
-      {% for productPitch_category in productPitch %}
-      <li>{{productPitch_category.title}}</li>
-      {% endfor %}
+      {{ macro.displayCategoryList(productPitch)}}
     </ul>
 
   </div>
   <div class="jumbotron">
     <h3> {{ Promotion Pitch }} </h3>
     <ul>
-      {% for promotionPitch_category in promotionPitch %}
-      <li>{{promotionPitch_category.title}}</li>
-      {% endfor %}
+      {{ macro.displayCategoryList(promotionPitch)}}
     </ul>
 
   </div>
