@@ -7,14 +7,14 @@ db = SQLAlchemy()
 
 # Initializing app
 def create_app(config_name):
-    app = Flask(__name__)
+    app = Flask(__name__,instance_relative_config = True)
 
 
     # Setting up configurations
     app.config.from_object(DevConfig)
     app.config.from_pyfile('config.py')
 
-    # bootstrap = Bootstrap()
+    bootstrap = Bootstrap()
     # db = SQLAlchemy()
 
     bootstrap.init_app(app)
