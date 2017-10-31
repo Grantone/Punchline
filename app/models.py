@@ -1,13 +1,11 @@
 class Category:
+    __tablename__ = 'categories'
 
-
-    def __init__(self,id,title,date):
-        self.id = id
-        self.title = title
-        self.time = time
+    id = db.column(db.Integer,primary_key = True)
 
 
 class User():
     __tablename__ = 'users'
 
     id = db.column(db.Integer,primary_key = True)
+    name = db.Column(db.string(255))
