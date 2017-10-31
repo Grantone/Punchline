@@ -7,18 +7,37 @@
     <div class="row">
 
     <h3>{{ PickUp Lines }}</h3>
-
+      <ul>
+        {% for punchLine_category in punchLine %}
+        <li>{{punchline_category.title}}</li>
+        {% endfor %}
+      </ul>
   </div>
   <div class="jumbotron">
     <h3> {{ Interview Pitch }} </h3>
+    <ul>
+      {% for interviewPitch_category in interviewPitch %}
+      <li>{{interviewPitch_category.title}}</li>
+      {% endfor %}
+    </ul>
 
   </div>
   <div class="jumbotron">
     <h3> {{ Product Pitch }} </h3>
+    <ul>
+      {% for productPitch_category in productPitch %}
+      <li>{{productPitch_category.title}}</li>
+      {% endfor %}
+    </ul>
 
   </div>
   <div class="jumbotron">
     <h3> {{ Promotion Pitch }} </h3>
+    <ul>
+      {% for promotionPitch_category in promotionPitch %}
+      <li>{{promotionPitch_category.title}}</li>
+      {% endfor %}
+    </ul>
 
   </div>
 </div>

@@ -4,13 +4,13 @@ class Category(db.Model):
     __tablename__ = 'categories'
 
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.string(255))
+    name = db.Column(db.String(255))
 
 class User(db.Model):
     __tablename__ = 'users'
 
-    id = db.column(db.Integer,primary_key = True)
-    name = db.Column(db.string(255))
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
 
 class Role(db.Model):
     __tablename__ = 'roles'
