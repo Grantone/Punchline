@@ -40,7 +40,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     comments = db.relationship('Comment', backref='user', lazy="dynamic")
-    pitches = db.relationship("Pitch", backref="user", lazy="dynamic")pass_secure = db.Column(db.String(255))
+    pitches = db.relationship("Pitch", backref="user", lazy="dynamic")
+    pass_secure = db.Column(db.String(255))
 
     @property
     def password(self):
