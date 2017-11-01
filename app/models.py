@@ -3,19 +3,22 @@ from datetime import datetime
 
 class Category(db.Model):
     __tablename__ = 'categories'
-
-    id = db.Column(db.Integer,primary_key = True)
+id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
     def __repr__(self):
         return f'User {self.name}'
 
 
-class User(db.Model):
+class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     db.Column(db.Integer,db.ForeignKey('roles.id'))
+
+    comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
     def __repr__(self):
         return f'User {self.name}'
 
