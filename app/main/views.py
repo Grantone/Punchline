@@ -3,6 +3,7 @@ from ..models import Comment
 from .forms import CommentForm
 # from app import app
 from . import main
+from flask_login import login_required
 
 
 # views
