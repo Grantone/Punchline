@@ -1,12 +1,15 @@
 from flask import render_template
+from .models import comment
+from .forms import CommentForm
 # from app import app
 from . import main
+
+Comment = comment.Comment
 
 
 # views
 @main.route('/')
 def index():
-
 
     #
     # #categories
@@ -15,12 +18,26 @@ def index():
     # product_pitch = get_categories('productPitch')
     # promotion_pitch = get_categories('promotionPitch')
     #
-# ,title = title, punchLine = punchLine_categories, interviewPitch = interviewPitch_categories, productPitch = productPitch_categories, promotionPitch = promotionPitch_categories
-
+    # ,title = title, punchLine = punchLine_categories, interviewPitch = interviewPitch_categories, productPitch = productPitch_categories, promotionPitch = promotionPitch_categories
 
     title = 'Home - Welcome to One Minute Pitch web'
-    return render_template('index.html',title=title)
-
+    return render_template('index.html', title=title)
 
     # message = 'One Minute Pitch'
     # return render_template('category.html',id = category_id)
+
+
+@app.route('/category/comment/new/<int:id>', methods=['GET', 'POST'])
+def new_comment(id):
+    form = CommentForm()
+    category = get_category(id)
+
+    if form.validate_on_submit():
+        title = form.title.data
+        comment = form.comment.data
+        new_comment = Comment(category.id, title, comment)
+        new_comment.save_comment()
+        return redirect(url_for('category', id=category.id))
+
+    title = f'{category.title} comment'
+    return render_template('new_comment.html', title=title, comment_form=form, category=category)
