@@ -10,6 +10,6 @@
 <!-- displaying all the pitches -->
 {% macro displayPitches(pitch_list) %} {% for pitches in pitch_list %}
 <li>
-  <a href="/pitch{{pitches.id}}">{{pitches.content}}</a>
+  <a href="/pitch{{pitches.id}}">{{pitches.title}}</a>
 </li>
 {% endfor %} {% endmacro %}

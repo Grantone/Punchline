@@ -21,6 +21,12 @@ class Category(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @classmethod
+    def get_categories(cls):
+
+        categories = Category.query.all()
+        return categories
+
     def __repr__(self):
         return f'User {self.name}'
 
@@ -30,11 +36,11 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, index=True)
-    name = db.Column(db.String(255))
-    password_hash = db.Column(db.String(255))
-
-    comments = db.relationship('Comment', backref='user', lazy="dynamic")
     pass_secure = db.Column(db.String(255))
+    username = db.Column(db.String(255))
+    password_hash = db.Column(db.String(255))
+    comments = db.relationship('Comment', backref='user', lazy="dynamic")
+    pitches = db.relationship("Pitch", backref="user", lazy="dynamic")pass_secure = db.Column(db.String(255))
 
     @property
     def password(self):
@@ -48,7 +54,7 @@ class User(UserMixin, db.Model):
             return check_password_hash(self.pass_secure, password)
 
     def __repr__(self):
-        return f'User {self.name}'
+        return f'User {self.username}'
 
 
 class Comment(db.Model):
@@ -57,34 +63,38 @@ class Comment(db.Model):
 
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
+    comment_section_id = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches_id"))
 
     def save_comment(self):
-        Comment.all_comments.append(self)
+        db.session.add(self)
+        db.session.comment()
 
     @classmethod
-    def clear_comments(cls):
-        Comment.all_comments.clear()
-
-    @classmethod
-    def get_comments(cls, id):
-
-        response = []
-
-        for comment in cls.all_comments:
-            if comment.category_id == id:
-                response.append(comment)
-
-            return response
+    def get_comments(self, id):
+        comments = Comment.query.filter_by(pitches_id=id).all()
+        return comments
 
 
 class Pitch(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key=True)
-    category_id = db.Column(db.Integer)
-    category_title = db.Column(db.String)
-    category_date = db.Column(db.DateTime, default=datetime.utcnow)
+    title = db.Column(db.String)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    categoty_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
+    comment = db.relationship("Comments", backref="pitch", lazy="dynamic")
 
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def clear_pitches(cls):
+        Pitch.all_pitches.clear()
+
+    @classmethod
+    def get_pitches(cls, id):
+        pitches = Pitch.query.filter_by(category_id=id).all()
+        return pitches
