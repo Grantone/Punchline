@@ -1,9 +1,15 @@
-{% extends 'base.html' %}
-{% import 'macros.html' as macro %}
+{% extends 'base.html' %} {% import 'macros.html' as macro %}
 
 
 <!-- Styles block -->
-{% block content %}
-{{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% block content %} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+
+<div class="col-md-4">
+
+  <h3>PickUp Lines</h3>
+  <ul>
+    {{macro.displayCategoryList(pickupLines)}}
+  </ul>
+</div>
 {% endblock %}
