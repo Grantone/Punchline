@@ -1,10 +1,8 @@
 from flask import render_template
-from .models import comment
+from ..models import Comment
 from .forms import CommentForm
 # from app import app
 from . import main
-
-Comment = comment.Comment
 
 
 # views
@@ -43,7 +41,7 @@ def new_comment(id):
     return render_template('new_comment.html', title=title, comment_form=form, category=category)
 
 
-@main.route('/category/<int:id')
+@main.route('/category/<int:id>')
 def category(id):
 
     category = get_category(id)

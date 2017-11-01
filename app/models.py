@@ -1,6 +1,6 @@
 from . import db
 from datetime import datetime
-from flask_login import UserMixin
+# from flask_login import UserMixin
 # from . import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -16,7 +16,7 @@ class Category(db.Model):
         return f'User {self.name}'
 
 
-class User(UserMixin, db.Model):
+class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
