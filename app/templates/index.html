@@ -1,40 +1,9 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
-  <div class="container">
-{% if title %}
-<title> {{ title }} </title>
-{% else %}
-<title> Welcome to One Minute Pitch Web </title>
-{% endif %}
 
-  </div>
-  <div class="jumbotron">
-    <div class="row">
 
-    <h3>{{ PickUp Lines }}</h3>
-      <ul>
-        {{ macro.displayCategoryList(pickupLine)}}
-      </ul>
-  </div>
-  <div class="jumbotron">
-    <h3> {{ Interview Pitch }} </h3>
-    <ul>
-      {{ macro.displayCategoryList(interviewPitch)}}
-    </ul>
-
-  </div>
-  <div class="jumbotron">
-    <h3> {{ Product Pitch }} </h3>
-    <ul>
-      {{ macro.displayCategoryList(productPitch)}}
-    </ul>
-
-  </div>
-  <div class="jumbotron">
-    <h3> {{ Promotion Pitch }} </h3>
-    <ul>
-      {{ macro.displayCategoryList(promotionPitch)}}
-    </ul>
-
-  </div>
-</div>
+<!-- Styles block -->
+{% block content %}
+{{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}

@@ -1,4 +1,5 @@
 from . import db
+from datetime import datetime
 
 class Category(db.Model):
     __tablename__ = 'categories'
@@ -14,14 +15,34 @@ class User(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    db.Column(db.Integer,db.ForeignKey('roles.id'))
     def __repr__(self):
         return f'User {self.name}'
 
+class Comment(db.Model):
 
-class Role(db.Model):
-    __tablename__ = 'roles'
-    id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255))
+    all_comments = []
 
-    def __repr__(self):
-        return f'User {self.name}'
+    __tablename__ = 'comments'
+    id =db.Column(db.Integer,primary_key = True)
+
+    def save_comment(self):
+        Comment.all_comments.append(self)
+
+    @classmethod
+    def clear_comments(cls):
+        Comment.all_comments.clear()
+
+
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+    id =db.Column(db.Integer,primary_key = True)
+    category_id = db.Column(db.Integer)
+    category_title = db.Column(db.String)
+    category_date = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()

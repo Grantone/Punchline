@@ -19,7 +19,7 @@ def index():
 
 
     title = 'Home - Welcome to One Minute Pitch web'
-    return render_template('index.html')
+    return render_template('index.html',title=title)
 
 
     # message = 'One Minute Pitch'
