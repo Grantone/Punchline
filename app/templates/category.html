@@ -1,15 +1,23 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content %}
 <div class="container">
+
+  <div class="row">
+
+    <h1>Comments</h1>
+    <hr> {% if comments %} {{macro.displayComments(comments)}} {% else%}
+    <h3 class="text-center">This category has no comment </h3>
+
+    <a class="btn btn-success btn-lg text-center" href="/category/comment/new/{{category.id}}"> Give a new comment</a> {% endif %}
+
+  </div>
 
 
   <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 posterPath" style="background: url({{movie.poster}}) no-repeat center center">
-        </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 posterPath" style="background: url({{category.poster}}) no-repeat center center">
+    </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
-           <h3>{{ category.title }}</h3>
-</div>
-</div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 category-details">
+      <h3>{{ category.title }}</h3>
+    </div>
+  </div>
 </div>

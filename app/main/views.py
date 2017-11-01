@@ -27,7 +27,7 @@ def index():
     # return render_template('category.html',id = category_id)
 
 
-@app.route('/category/comment/new/<int:id>', methods=['GET', 'POST'])
+@main.route('/category/comment/new/<int:id>', methods=['GET', 'POST'])
 def new_comment(id):
     form = CommentForm()
     category = get_category(id)
@@ -41,3 +41,13 @@ def new_comment(id):
 
     title = f'{category.title} comment'
     return render_template('new_comment.html', title=title, comment_form=form, category=category)
+
+
+@main.route('/category/<int:id')
+def category(id):
+
+    category = get_category(id)
+    title = f'{category.title}'
+    comments = Comment.get_comments(category_id)
+
+    return render_template('category.html', title=title, category=category, comments=comments)
