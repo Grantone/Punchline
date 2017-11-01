@@ -6,3 +6,10 @@
   <p> {{ comment.comment | truncate(30) }}</p>
 </div>
 {% endfor %} {% endmacro %}
+
+<!-- displaying all the pitches -->
+{% macro displayPitches(pitch_list) %} {% for pitches in pitch_list %}
+<li>
+  <a href="/pitch{{pitches.id}}">{{pitches.content}}</a>
+</li>
+{% endfor %} {% endmacro %}
