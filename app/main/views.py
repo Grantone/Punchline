@@ -27,6 +27,7 @@ def index():
 
 
 @main.route('/category/comment/new/<int:id>', methods=['GET', 'POST'])
+@login_required
 def new_comment(id):
     form = CommentForm()
     category = get_category(id)
