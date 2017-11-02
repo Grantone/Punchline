@@ -15,7 +15,7 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    category_title = db.Column(db.String)
+    title = db.Column(db.String)
     pitches = db.relationship('Pitch', backref='role', lazy="dynamic")
 
     def save_category(self):
@@ -75,7 +75,7 @@ class Comment(db.Model):
 
     @classmethod
     def get_comments(self, id):
-        comments = Comment.query.filter_by(pitches_id=id).all()
+        comments = Comment.query.filter_by(category_id=id).all()
         return comments
 
 
