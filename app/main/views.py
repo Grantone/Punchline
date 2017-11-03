@@ -27,7 +27,7 @@ def new_comment(id):
         new_comment.save_comment()
         return redirect(url_for('category', id=category.id))
 
-    title = f'{category.title} comment'
+    # title = f'{category.name} comment'
     return render_template('new_comment.html', title=title, comment_form=form, category=category)
 
 
@@ -35,7 +35,7 @@ def new_comment(id):
 def category(id):
 
     category = Category.get_categories(id)
-    title = f'{category.title}'
-    comments = Comment.get_comments(category_id)
+    # title = f'{category.name}'
+    comments = Comment.get_comments(category.id)
 
     return render_template('category.html', title=title, category=category, comments=comments)

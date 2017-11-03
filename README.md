@@ -1,12 +1,12 @@
-PunchLine
+# PunchLine
 
 A web application that allows users to create a one minute pitch and also get feedback with votes.
 
-By Granton Mchana
+#### By Granton Mchana
 
-Description
+#### Description
 
-This is a web application that allows various users to submit a short pitch. Users can also be able to view other pitches from different categories e.g Pick-up Lines, Interview Pitches, Product Pitches, Promotion Pitches,giv a comment and vote. For a user to do any of that, they need to have registered.
+This is a web application that allows various users to submit a short pitch. Users can also be able to view other pitches from different categories e.g Pick-up Lines, Interview Pitches, Product Pitches, Promotion Pitches,give a comment and vote. For a user to do any of that, they need to have registered.
 
 User Stories
 
@@ -17,16 +17,16 @@ As a user I would like to submit a pitch in any category.
 As a user I would like to vote on the pitch they liked and give it a downvote or upvote.
 Specifications
 
- User displays a form where a user can comment on a certain pitch
+User displays a form where a user can comment on a certain pitch
 Setup/Installation Requirements
 
-Click on One Minute Pitch
+Click on the PunchLine
 
-Known Bugs
+#### Known Bugs
 
 No bugs
 
-Technologies Used
+#### Technologies Used
 
 HTML
 Python3.6
@@ -38,12 +38,12 @@ License
 MIT (c) 2017 Granton Mchana
 
 
-LICENCE
+#### LICENCE
 
 
 MIT License
 
-Copyright (c) 2017 Granton Mchana
+### Copyright (c) 2017 Granton Mchana
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
