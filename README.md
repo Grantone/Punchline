@@ -24,7 +24,7 @@ Click on One Minute Pitch
 
 Known Bugs
 
-Deployment to heroku
+No bugs
 
 Technologies Used
 
