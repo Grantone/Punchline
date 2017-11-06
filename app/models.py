@@ -15,7 +15,7 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    description = db.Column(db.String)
+    description = db.Column(db.String(255))
     pitches = db.relationship('Pitch', backref='role', lazy="dynamic")
 
     def save_category(self):
@@ -84,7 +84,7 @@ class Pitch(db.Model):
     title = db.Column(db.String)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    categoty_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
     comments = db.relationship("Comment", backref="pitch", lazy="dynamic")
 
     def save_pitch(self):
@@ -96,6 +96,6 @@ class Pitch(db.Model):
         Pitch.all_pitches.clear()
 
     @classmethod
-    def get_pitches(cls, id):
-        pitches = Pitch.query.filter_by(category_id=id).all()
-        return pitches
+    def get_all_pitches(cls, id):
+        all_pitches = Pitch.query.all()
+        return all_pitches
