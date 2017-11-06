@@ -3,13 +3,21 @@
 
 <!-- Styles block -->
 {% block content %} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-
-<div class="col-md-4">
-
-  <h3>PunchLine</h3>
-  <ul>
-    {{macro.displayCategoryList(categories)}}
-  </ul>
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {%extends 'base.html'%} {% import 'macros.html' as macro%} {% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %} {% block content %}
+<div class="container">
+  <div class="block">
+    <h2>Punchline</h2>
+    <div class="pitches">
+      <ul class="nav nav-tabs">
+        {{macro.displayCategory(category)}}
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div id="{{category.name}}" class="tab-pane fade in active">
+        {{macro.displayPitches(pitch)}}
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+{% endblock%}
