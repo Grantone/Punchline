@@ -10,7 +10,7 @@ from datetime import datetime
 def index():
 
     category = Category.get_categories(id)
-    pitch = Pitch.get_all_pitches()
+    pitch = Pitch.get_all_pitches(id)
     title = 'Home - Welcome to PunchLine'
     return render_template('index.html', title=title, category=category, pitch=pitch)
 
@@ -22,7 +22,7 @@ def category(id):
     form = PitchForm()
     title = 'pitches'
 
-    return render_template('category.html', category=category, title=title, pitch_form=form)
+    return render_template('category.html', category=category, title=title, pitch_form=form, id=id)
 
     # pitch=pitch,
 
@@ -30,6 +30,7 @@ def category(id):
 @main.route('/category/pitch/new/<int:id>', methods=["GET", "POST"])
 @login_required
 def new_pitch(id):
+    print('<><><><><><><><>')
     category = Category.query.filter_by(id=id).first()
 
     if category is None:
@@ -40,14 +41,14 @@ def new_pitch(id):
     if form.validate_on_submit():
         content = form.content.data
         new_pitch = Pitch(
-            name=name, category_id=category.id, user_id=current_user.id)
+            title=content, category_id=category.id, user_id=current_user.id)
 
         new_pitch.save_pitch()
 
         return redirect(url_for('.category', id=category.id))
 
     title = "New Pitch"
-    return render_template('category.html', pitch_form=form, title=title)
+    return render_template('new_pitch.html', pitch_form=form, title=title)
 
 
 @main.route('/pitch/<int:id>')
